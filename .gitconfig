@@ -1,0 +1,21 @@
+[user]
+    name = <name>
+    email = <email>
+[alias]
+    st = status
+    vi = difftool
+    vc = difftool --cached
+    dc = diff --cached
+    di = diff
+    l = log --graph --oneline --decorate
+    ll = log --graph --oneline --decorate --branches --tags
+    lll = log --graph --oneline --decorate --all
+    tree = log --graph --simplify-by-decoration --pretty=format:'%d' --all
+[diff]
+    tool = vimdiff
+[difftool]
+    prompt = false
+# [pull]
+#    rebase = true
+# [safe]
+#    directory = /home/<username>/<dirname>
