@@ -5,7 +5,7 @@ alias vlist="sudo virsh list --all"
 alias vonsole="sudo virsh console"
 alias gitclone='GIT_SSH_COMMAND="ssh -vvv" git clone'
 alias vl=vlist
-
+alias ll='ls -aAhlt'
 alias vi=/usr/bin/vim
 
 export vimages="/var/lib/libvirt/images"
