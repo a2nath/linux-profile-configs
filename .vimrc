@@ -31,6 +31,7 @@ set hlsearch
 set ignorecase
 set smartcase
 set incsearch
+set shortmess-=S " for version 8.1.1270+
 
 set ai
 set tabstop=4       " The width of a TAB is set to 4.
