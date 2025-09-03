@@ -15,6 +15,9 @@
     tool = vimdiff
 [difftool]
     prompt = false
+[core]
+    fileMode = false
+    editor = vim
 # [pull]
 #    rebase = true
 # [safe]
