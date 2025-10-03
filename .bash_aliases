@@ -36,18 +36,12 @@ get_paths() {
 
 vdelete() {
     if [ -n "$1" ]; then
-        details=$(virsh domstats --domain "$1")
-        echo -e "details--------------\n$details"
+        paths=$(get_paths $1)
+        echo -e "Paths for this VM --------------\n$paths"
 
-        if [[ ! "$details" =~ [Ee]rror ]]; then
+        if [[ ! "$paths" =~ [Ee]rror ]]; then
         #if [[ -n "$details" ]]; then
             vm_name=$1
-
-            echo -e "VM\n------------\n$vm_name"
-
-            paths=$(grep "block.*path=" <<< "$details" | cut -d'=' -f2)
-
-            echo -e "Paths\n------------\n$paths"
 
             # Check if any paths were found
             if [ ! -z "$paths" ]; then
@@ -65,7 +59,7 @@ vdelete() {
                 echo "No vdisk paths found for VM '$1'."
             fi
 
-            echo -e "------------\ndeleted $vm_name: $(date)"
+            echo -e "Deleted $vm_name: $(date) --------------"
         else
             echo "VM with name \"$1\" is not found"
         fi
