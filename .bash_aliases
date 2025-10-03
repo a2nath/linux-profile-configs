@@ -21,6 +21,18 @@ get_vm_list() {
     echo "$list"
 }
 
+get_paths() {
+        details=$(virsh domstats --domain "$1")
+        if [[ ! "$details" =~ [Ee]rror ]]; then
+        #if [[ -n "$details" ]]; then
+            vm_name=$1
+
+            paths=$(grep "block.*path=" <<< "$details" | cut -d'=' -f2)
+            echo -e "$paths"
+        else
+            echo "$details"
+        fi
+}
 
 vdelete() {
     if [ -n "$1" ]; then
@@ -60,6 +72,31 @@ vdelete() {
     fi
 }
 
+vll() {
+    if [ -n "$1" ]; then
+        paths=$(get_paths $1)
+        echo -e "Paths for this VM --------------\n$paths"
+
+        if [[ ! "$paths" =~ [Ee]rror ]]; then
+        #if [[ -n "$details" ]]; then
+            vm_name=$1
+
+            # Check if any paths were found
+            if [ ! -z "$paths" ]; then
+                for path in $paths; do
+                    if [ -f "$path" ]; then
+                        ls -aAhlt $path
+                    else
+                        echo "File not found or not a regular file: $path"
+                        return
+                    fi
+                done
+            fi
+        else
+            echo "VM with name \"$1\" is not found"
+        fi
+    fi
+}
 
 vshut() {
 
