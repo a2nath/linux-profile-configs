@@ -8,6 +8,7 @@ alias vl=vlist
 alias make='/usr/bin/make -j$(nproc)'
 alias ll='ls -aAhlt'
 alias vi=/usr/bin/vim
+alias cdl='cd "$(find . -type d -printf "%T@ %p\n" | sort -nr | head -n 1 | cut -d" " -f2-)"'
 
 export vimages="/var/lib/libvirt/images"
 
